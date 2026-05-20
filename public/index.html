@@ -1,0 +1,1995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Tattoo Hub — Premium Tattoo Studio & Gallery</title>
+<meta name="description" content="The Tattoo Hub — A premium tattoo studio and curated gallery. Explore minimal, tribal, anime, geometric, and blackwork tattoo art.">
+<meta property="og:title" content="The Tattoo Hub">
+<meta property="og:description" content="Premium tattoo gallery and studio">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --bg2: #111111;
+    --bg3: #1a1a1a;
+    --bg4: #222222;
+    --silver: #c8c8c8;
+    --silver2: #999999;
+    --white: #f0f0f0;
+    --accent: #e8e8e8;
+    --glow: rgba(255,255,255,0.08);
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.15);
+    --hex: #1c1c1c;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--silver);
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  /* NOISE TEXTURE */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* ─── NAVBAR ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+    transition: all 0.3s;
+  }
+  nav.scrolled { background: rgba(10,10,10,0.97); border-bottom-color: var(--border2); }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+  .nav-logo-hex {
+    width: 42px; height: 42px;
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .nav-logo-hex svg { width: 42px; height: 42px; }
+  .nav-logo-text { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--white); letter-spacing: 3px; }
+  .nav-logo-sub { font-family: 'Oswald', sans-serif; font-size: 10px; color: var(--silver2); letter-spacing: 4px; }
+  .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+  .nav-links a {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--silver2);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0; right: 0;
+    height: 1px;
+    background: var(--white);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+  .nav-links .admin-link {
+    background: var(--border2);
+    border: 1px solid var(--border2);
+    padding: 6px 16px;
+    color: var(--silver);
+    transition: all 0.2s;
+  }
+  .nav-links .admin-link:hover { background: var(--white); color: #000; border-color: var(--white); }
+  .nav-links .admin-link::after { display: none; }
+  .menu-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+  .menu-toggle span { display: block; width: 24px; height: 1.5px; background: var(--silver); margin: 5px 0; transition: all 0.3s; }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding-top: 70px;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 80% at 50% 0%, rgba(255,255,255,0.04) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 40% at 20% 100%, rgba(255,255,255,0.02) 0%, transparent 50%);
+  }
+  .hero-hex-grid {
+    position: absolute;
+    inset: 0;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='104' viewBox='0 0 60 104' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0 L60 17.3 L60 52 L30 69.3 L0 52 L0 17.3Z' fill='none' stroke='%23ffffff' stroke-width='0.5'/%3E%3Cpath d='M30 69.3 L60 86.6 L60 121.3 L30 138.6 L0 121.3 L0 86.6Z' fill='none' stroke='%23ffffff' stroke-width='0.5'/%3E%3C/svg%3E");
+  }
+  .hero-content {
+    position: relative;
+    text-align: center;
+    z-index: 1;
+    padding: 0 20px;
+    animation: fadeUp 1s ease both;
+  }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+  .hero-logo-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+    animation: fadeUp 1s 0.1s ease both;
+  }
+  .hero-hex {
+    width: 140px; height: 140px;
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-hex-spin {
+    position: absolute;
+    inset: 0;
+    animation: spin 20s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .hero-hex-inner {
+    width: 80px; height: 80px;
+    border: 1.5px solid rgba(255,255,255,0.3);
+    display: flex; align-items: center; justify-content: center;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    background: rgba(255,255,255,0.04);
+  }
+  .hero-hex-inner svg { width: 36px; height: 36px; }
+  .hero-eyebrow {
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    letter-spacing: 6px;
+    color: var(--silver2);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    animation: fadeUp 1s 0.2s ease both;
+  }
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(60px, 12vw, 130px);
+    color: var(--white);
+    letter-spacing: 8px;
+    line-height: 0.9;
+    margin-bottom: 20px;
+    animation: fadeUp 1s 0.3s ease both;
+  }
+  .hero-title span { color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.4); }
+  .hero-subtitle {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    letter-spacing: 8px;
+    color: var(--silver2);
+    text-transform: uppercase;
+    margin-bottom: 48px;
+    animation: fadeUp 1s 0.4s ease both;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeUp 1s 0.5s ease both;
+  }
+  .btn-primary {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 14px 36px;
+    background: var(--white);
+    color: #000;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  }
+  .btn-primary:hover { background: var(--silver2); transform: translateY(-2px); }
+  .btn-outline {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 14px 36px;
+    background: transparent;
+    color: var(--silver);
+    border: 1px solid var(--border2);
+    cursor: pointer;
+    transition: all 0.3s;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  }
+  .btn-outline:hover { border-color: var(--white); color: var(--white); transform: translateY(-2px); }
+  .hero-scroll {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    animation: fadeUp 1s 0.8s ease both;
+  }
+  .hero-scroll span {
+    font-family: 'Oswald', sans-serif;
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--silver2);
+    text-transform: uppercase;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 50px;
+    background: linear-gradient(to bottom, var(--silver2), transparent);
+    animation: scrollLine 2s ease infinite;
+  }
+  @keyframes scrollLine { 0%,100%{opacity:0.3} 50%{opacity:1} }
+
+  /* ─── SECTION COMMON ─── */
+  section { position: relative; z-index: 1; }
+  .section-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  .section-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: var(--silver2);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 6vw, 64px);
+    color: var(--white);
+    letter-spacing: 4px;
+    line-height: 1;
+  }
+  .section-line {
+    width: 60px;
+    height: 1px;
+    background: rgba(255,255,255,0.3);
+    margin: 20px auto 0;
+  }
+  .container { max-width: 1400px; margin: 0 auto; padding: 0 5%; }
+  .pad { padding: 120px 0; }
+
+  /* ─── SEARCH BAR ─── */
+  .search-wrap {
+    max-width: 600px;
+    margin: 0 auto 80px;
+    position: relative;
+  }
+  .search-input {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    color: var(--white);
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    padding: 16px 56px 16px 20px;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  .search-input::placeholder { color: var(--silver2); }
+  .search-input:focus { border-color: rgba(255,255,255,0.3); }
+  .search-btn {
+    position: absolute;
+    right: 0; top: 0; bottom: 0;
+    width: 56px;
+    background: rgba(255,255,255,0.08);
+    border: none;
+    color: var(--silver);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+  }
+  .search-btn:hover { background: rgba(255,255,255,0.15); }
+  .search-btn svg { width: 18px; height: 18px; }
+
+  /* ─── CATEGORIES ─── */
+  #categories { background: var(--bg2); }
+  .cats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 2px;
+  }
+  .cat-card {
+    position: relative;
+    aspect-ratio: 3/2;
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--bg3);
+  }
+  .cat-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.6s ease;
+    filter: grayscale(40%) brightness(0.5);
+  }
+  .cat-card:hover .cat-bg { transform: scale(1.06); filter: grayscale(0%) brightness(0.6); }
+  .cat-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 60%);
+  }
+  .cat-info {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 20px;
+  }
+  .cat-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--white);
+    letter-spacing: 2px;
+    display: block;
+  }
+  .cat-count {
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    color: var(--silver2);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+  .cat-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid transparent;
+    transition: border-color 0.3s;
+    z-index: 2;
+  }
+  .cat-card:hover::before { border-color: rgba(255,255,255,0.2); }
+
+  /* category background patterns using CSS */
+  .cat-minimal { background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 100%); }
+  .cat-tribal { background: linear-gradient(135deg, #0a0a0a 0%, #151515 100%); }
+  .cat-anime { background: linear-gradient(135deg, #0c0c0c 0%, #181818 100%); }
+  .cat-sleeve { background: linear-gradient(135deg, #080808 0%, #141414 100%); }
+  .cat-black { background: linear-gradient(135deg, #050505 0%, #101010 100%); }
+  .cat-realism { background: linear-gradient(135deg, #0b0b0b 0%, #161616 100%); }
+  .cat-geo { background: linear-gradient(135deg, #090909 0%, #131313 100%); }
+  .cat-trad { background: linear-gradient(135deg, #0e0e0e 0%, #1c1c1c 100%); }
+  .cat-custom { background: linear-gradient(135deg, #0f0f0f 0%, #1e1e1e 100%); }
+
+  /* ─── GALLERY ─── */
+  #gallery { background: var(--bg); }
+  .gallery-filter {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 48px;
+  }
+  .filter-btn {
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 8px 20px;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--silver2);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .filter-btn:hover, .filter-btn.active { background: var(--white); color: #000; border-color: var(--white); }
+  .gallery-grid {
+    columns: 4;
+    column-gap: 3px;
+  }
+  @media(max-width:1100px){ .gallery-grid { columns: 3; } }
+  @media(max-width:700px){ .gallery-grid { columns: 2; } }
+  @media(max-width:460px){ .gallery-grid { columns: 1; } }
+  .gallery-item {
+    break-inside: avoid;
+    margin-bottom: 3px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--bg3);
+    display: block;
+  }
+  .gallery-img {
+    width: 100%;
+    display: block;
+    transition: transform 0.5s ease, filter 0.3s;
+    filter: grayscale(30%);
+  }
+  .gallery-item:hover .gallery-img { transform: scale(1.04); filter: grayscale(0%); }
+  .gallery-hover {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 20px;
+    transition: background 0.3s;
+  }
+  .gallery-item:hover .gallery-hover { background: rgba(0,0,0,0.6); }
+  .gallery-meta {
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.3s;
+    width: 100%;
+  }
+  .gallery-item:hover .gallery-meta { transform: translateY(0); opacity: 1; }
+  .gallery-tag {
+    font-family: 'Oswald', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--silver2);
+    text-transform: uppercase;
+  }
+  .gallery-title-sm {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    color: var(--white);
+    letter-spacing: 1px;
+    margin: 4px 0;
+  }
+  .gallery-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+  }
+  .gallery-btn {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: var(--white);
+    width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .gallery-btn:hover { background: rgba(255,255,255,0.25); }
+  .gallery-btn svg { width: 14px; height: 14px; }
+  .gallery-watermark {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) rotate(-30deg);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 4px;
+    color: rgba(255,255,255,0.06);
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+  }
+
+  /* ─── TRENDING ─── */
+  #trending { background: var(--bg2); }
+  .trending-slider {
+    display: flex;
+    gap: 3px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+  }
+  .trending-slider::-webkit-scrollbar { display: none; }
+  .trending-card {
+    flex: 0 0 320px;
+    scroll-snap-align: start;
+    position: relative;
+    aspect-ratio: 2/3;
+    overflow: hidden;
+    background: var(--bg3);
+    cursor: pointer;
+  }
+  .trending-card .tc-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    filter: grayscale(60%) brightness(0.5);
+    transition: transform 0.5s, filter 0.3s;
+  }
+  .trending-card:hover .tc-bg { transform: scale(1.06); filter: grayscale(20%) brightness(0.6); }
+  .trending-card .tc-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, transparent 50%);
+  }
+  .trending-card .tc-num {
+    position: absolute;
+    top: 20px; right: 20px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 60px;
+    color: rgba(255,255,255,0.08);
+    line-height: 1;
+    user-select: none;
+  }
+  .trending-card .tc-info {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 24px;
+  }
+  .tc-cat {
+    font-family: 'Oswald', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--silver2);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .tc-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    color: var(--white);
+    letter-spacing: 1px;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .tc-desc {
+    font-size: 12px;
+    color: var(--silver2);
+    line-height: 1.5;
+  }
+  .tc-badge {
+    position: absolute;
+    top: 20px; left: 20px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
+    font-family: 'Oswald', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--silver);
+    text-transform: uppercase;
+    padding: 4px 12px;
+    backdrop-filter: blur(4px);
+  }
+  .slider-controls {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+  .slider-btn {
+    width: 40px; height: 40px;
+    background: transparent;
+    border: 1px solid var(--border2);
+    color: var(--silver);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+  .slider-btn:hover { background: var(--white); color: #000; border-color: var(--white); }
+  .slider-btn svg { width: 16px; height: 16px; }
+
+  /* ─── ABOUT ─── */
+  #about { background: var(--bg); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  @media(max-width:800px){ .about-grid { grid-template-columns: 1fr; gap: 40px; } }
+  .about-hex-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 400px;
+  }
+  .big-hex {
+    width: 300px; height: 300px;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .big-hex-inner {
+    width: 200px; height: 200px;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    background: var(--bg4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .big-hex-inner svg { width: 80px; height: 80px; }
+  .about-orbit {
+    position: absolute;
+    inset: 0;
+    animation: orbit 15s linear infinite;
+  }
+  @keyframes orbit {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  .orbit-dot {
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 6px; height: 6px;
+    background: var(--silver2);
+    border-radius: 50%;
+  }
+  .about-text {}
+  .about-subtitle {
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: var(--silver2);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .about-h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 5vw, 56px);
+    color: var(--white);
+    letter-spacing: 3px;
+    line-height: 1;
+    margin-bottom: 24px;
+  }
+  .about-p {
+    font-size: 14px;
+    color: var(--silver2);
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+  .about-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 40px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border);
+  }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    color: var(--white);
+    letter-spacing: 2px;
+    line-height: 1;
+    display: block;
+  }
+  .stat-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--silver2);
+    text-transform: uppercase;
+  }
+
+  /* ─── CONTACT ─── */
+  #contact { background: var(--bg2); }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+  }
+  @media(max-width:800px){ .contact-grid { grid-template-columns: 1fr; } }
+  .contact-info {}
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .contact-icon {
+    width: 44px; height: 44px;
+    border: 1px solid var(--border2);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .contact-icon svg { width: 18px; height: 18px; }
+  .contact-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--silver2);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    display: block;
+  }
+  .contact-value {
+    font-size: 14px;
+    color: var(--white);
+  }
+  .contact-form {}
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  @media(max-width:500px){ .form-row { grid-template-columns: 1fr; } }
+  .form-input, .form-textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    color: var(--white);
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    padding: 14px 16px;
+    outline: none;
+    transition: border-color 0.2s;
+    resize: none;
+  }
+  .form-input::placeholder, .form-textarea::placeholder { color: rgba(255,255,255,0.2); }
+  .form-input:focus, .form-textarea:focus { border-color: rgba(255,255,255,0.3); }
+  .form-textarea { height: 120px; }
+  .form-submit {
+    margin-top: 12px;
+    width: 100%;
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 16px;
+    background: var(--white);
+    color: #000;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .form-submit:hover { background: var(--silver2); }
+
+  /* ─── ADMIN PANEL ─── */
+  #admin-panel {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(10px);
+  }
+  #admin-panel.open { display: flex; }
+  .admin-modal {
+    background: #0f0f0f;
+    border: 1px solid var(--border2);
+    width: 100%;
+    max-width: 460px;
+    padding: 48px;
+    position: relative;
+    animation: fadeUp 0.4s ease;
+  }
+  .admin-close {
+    position: absolute;
+    top: 16px; right: 16px;
+    background: none;
+    border: none;
+    color: var(--silver2);
+    cursor: pointer;
+    padding: 4px;
+    font-size: 20px;
+    line-height: 1;
+    transition: color 0.2s;
+  }
+  .admin-close:hover { color: var(--white); }
+  .admin-logo {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  .admin-logo-hex {
+    width: 60px; height: 60px;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 12px;
+  }
+  .admin-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--white);
+    letter-spacing: 4px;
+    display: block;
+  }
+  .admin-sub {
+    font-family: 'Oswald', sans-serif;
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--silver2);
+    text-transform: uppercase;
+  }
+  .admin-form-group { margin-bottom: 16px; }
+  .admin-form-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--silver2);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 8px;
+  }
+  .admin-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    padding: 4px 12px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--silver2);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .admin-badge .dot { width: 6px; height: 6px; background: #4ade80; border-radius: 50%; }
+  .admin-forgot {
+    text-align: center;
+    margin-top: 16px;
+    font-size: 12px;
+    color: var(--silver2);
+  }
+  .admin-forgot a { color: var(--silver); text-decoration: none; }
+
+  /* ─── ADMIN DASHBOARD ─── */
+  #admin-dashboard {
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    background: #080808;
+    display: none;
+    overflow-y: auto;
+  }
+  #admin-dashboard.open { display: block; }
+  .dash-nav {
+    background: #0d0d0d;
+    border-bottom: 1px solid var(--border);
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .dash-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    color: var(--white);
+    letter-spacing: 3px;
+  }
+  .dash-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .dash-avatar {
+    width: 32px; height: 32px;
+    background: rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    color: var(--white);
+  }
+  .dash-btn {
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    background: transparent;
+    border: 1px solid var(--border2);
+    color: var(--silver);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .dash-btn:hover { background: var(--white); color: #000; border-color: var(--white); }
+  .dash-body {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    min-height: calc(100vh - 60px);
+  }
+  .dash-sidebar {
+    background: #0d0d0d;
+    border-right: 1px solid var(--border);
+    padding: 24px 0;
+  }
+  .dash-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 24px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--silver2);
+    cursor: pointer;
+    transition: all 0.2s;
+    border-left: 2px solid transparent;
+  }
+  .dash-nav-item:hover, .dash-nav-item.active {
+    color: var(--white);
+    background: rgba(255,255,255,0.04);
+    border-left-color: var(--white);
+  }
+  .dash-nav-item svg { width: 16px; height: 16px; flex-shrink: 0; }
+  .dash-content { padding: 32px; }
+  .dash-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  @media(max-width:900px){ .dash-stats { grid-template-columns: repeat(2,1fr); } }
+  .stat-card {
+    background: #111;
+    border: 1px solid var(--border);
+    padding: 20px;
+  }
+  .stat-card-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 40px;
+    color: var(--white);
+    letter-spacing: 2px;
+    line-height: 1;
+    display: block;
+  }
+  .stat-card-lbl {
+    font-family: 'Oswald', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--silver2);
+    text-transform: uppercase;
+    margin-top: 4px;
+    display: block;
+  }
+  .stat-card-delta {
+    font-size: 11px;
+    color: #4ade80;
+    margin-top: 8px;
+  }
+  .dash-section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    color: var(--white);
+    letter-spacing: 3px;
+    margin-bottom: 16px;
+  }
+  .dash-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 32px;
+  }
+  .dash-table th {
+    font-family: 'Oswald', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--silver2);
+    text-align: left;
+    padding: 10px 16px;
+    background: #111;
+    border: 1px solid var(--border);
+  }
+  .dash-table td {
+    font-size: 13px;
+    color: var(--silver);
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    background: #0d0d0d;
+  }
+  .dash-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .tag-pill {
+    display: inline-block;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--border);
+    font-family: 'Oswald', sans-serif;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--silver2);
+    text-transform: uppercase;
+    padding: 2px 10px;
+    margin-right: 4px;
+  }
+  .status-live { color: #4ade80; }
+  .status-pend { color: #facc15; }
+  .status-rej { color: #f87171; }
+  .sync-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(74,222,128,0.06);
+    border: 1px solid rgba(74,222,128,0.2);
+    padding: 8px 16px;
+    margin-bottom: 24px;
+    width: fit-content;
+  }
+  .sync-dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; animation: pulse 2s ease infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  .sync-text {
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #4ade80;
+    text-transform: uppercase;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #060606;
+    border-top: 1px solid var(--border);
+    padding: 80px 5% 40px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 60px;
+  }
+  @media(max-width:1000px){ .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; } }
+  @media(max-width:500px){ .footer-grid { grid-template-columns: 1fr; } }
+  .footer-brand {}
+  .footer-logo-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--white);
+    letter-spacing: 5px;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .footer-logo-sub {
+    font-family: 'Oswald', sans-serif;
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: var(--silver2);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 20px;
+  }
+  .footer-desc {
+    font-size: 13px;
+    color: rgba(255,255,255,0.3);
+    line-height: 1.7;
+    margin-bottom: 24px;
+    max-width: 280px;
+  }
+  .social-row {
+    display: flex;
+    gap: 10px;
+  }
+  .social-btn {
+    width: 36px; height: 36px;
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--silver2);
+    text-decoration: none;
+    transition: all 0.2s;
+    font-size: 14px;
+  }
+  .social-btn:hover { border-color: var(--white); color: var(--white); background: rgba(255,255,255,0.05); }
+  .footer-col h4 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--silver);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 10px; }
+  .footer-col ul li a {
+    font-size: 13px;
+    color: rgba(255,255,255,0.3);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-col ul li a:hover { color: var(--silver); }
+  .newsletter-row {
+    display: flex;
+    gap: 0;
+  }
+  .newsletter-input {
+    flex: 1;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-right: none;
+    color: var(--white);
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    padding: 10px 14px;
+    outline: none;
+  }
+  .newsletter-input::placeholder { color: rgba(255,255,255,0.2); }
+  .newsletter-submit {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid var(--border);
+    color: var(--silver);
+    padding: 10px 16px;
+    cursor: pointer;
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    letter-spacing: 1px;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .newsletter-submit:hover { background: var(--white); color: #000; }
+  .footer-bottom {
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: gap;
+    gap: 16px;
+  }
+  .footer-copy {
+    font-size: 12px;
+    color: rgba(255,255,255,0.2);
+  }
+  .footer-badges {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .footer-badge {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    font-family: 'Oswald', sans-serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.2);
+    text-transform: uppercase;
+    padding: 4px 10px;
+  }
+
+  /* ─── FULLSCREEN PREVIEW ─── */
+  #preview {
+    position: fixed;
+    inset: 0;
+    z-index: 9997;
+    background: rgba(0,0,0,0.95);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+  }
+  #preview.open { display: flex; }
+  .preview-inner { position: relative; max-width: 800px; width: 100%; text-align: center; }
+  .preview-img { max-width: 100%; max-height: 80vh; object-fit: contain; filter: grayscale(10%); }
+  .preview-close {
+    position: fixed;
+    top: 20px; right: 20px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid var(--border2);
+    color: var(--white);
+    width: 40px; height: 40px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    font-size: 20px;
+    transition: background 0.2s;
+  }
+  .preview-close:hover { background: rgba(255,255,255,0.2); }
+  .preview-info {
+    margin-top: 20px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .preview-title { font-family: 'Bebas Neue', sans-serif; font-size: 24px; color: var(--white); letter-spacing: 2px; }
+  .preview-cat { font-family: 'Oswald', sans-serif; font-size: 11px; letter-spacing: 3px; color: var(--silver2); text-transform: uppercase; }
+  .preview-watermark {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%) rotate(-30deg);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    color: rgba(255,255,255,0.04);
+    letter-spacing: 8px;
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+  }
+
+  /* ─── TOAST ─── */
+  .toast {
+    position: fixed;
+    bottom: 32px; right: 32px;
+    background: #111;
+    border: 1px solid var(--border2);
+    color: var(--silver);
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 14px 20px;
+    z-index: 99999;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.3s;
+    pointer-events: none;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+
+  /* ─── MOBILE NAV ─── */
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    inset: 70px 0 0 0;
+    background: rgba(5,5,5,0.98);
+    z-index: 999;
+    padding: 32px;
+    flex-direction: column;
+    gap: 24px;
+    backdrop-filter: blur(20px);
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    letter-spacing: 4px;
+    color: var(--silver2);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 24px;
+    transition: color 0.2s;
+  }
+  .mobile-menu a:hover { color: var(--white); }
+
+  @media(max-width:900px) {
+    .nav-links { display: none; }
+    .menu-toggle { display: block; }
+  }
+
+  /* ─── SCROLL REVEAL ─── */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal-d1 { transition-delay: 0.1s; }
+  .reveal-d2 { transition-delay: 0.2s; }
+  .reveal-d3 { transition-delay: 0.3s; }
+</style>
+</head>
+<body>
+
+<!-- ─── NAVBAR ─── -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">
+    <div class="nav-logo-hex">
+      <svg viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="21,2 40,12 40,30 21,40 2,30 2,12" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="1"/>
+        <polygon points="21,8 34,15.5 34,26.5 21,34 8,26.5 8,15.5" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="0.5"/>
+        <circle cx="21" cy="21" r="6" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+        <circle cx="21" cy="21" r="2" fill="rgba(255,255,255,0.5)"/>
+      </svg>
+    </div>
+    <div>
+      <div class="nav-logo-text">TATTOO HUB</div>
+      <div class="nav-logo-sub">· AIG1 HUB ·</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#categories">Categories</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#trending">Trending</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#" class="admin-link" onclick="openAdmin(event)">Admin Login</a></li>
+  </ul>
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#hero" onclick="closeMenu()">Home</a>
+  <a href="#categories" onclick="closeMenu()">Categories</a>
+  <a href="#gallery" onclick="closeMenu()">Gallery</a>
+  <a href="#trending" onclick="closeMenu()">Trending</a>
+  <a href="#about" onclick="closeMenu()">About</a>
+  <a href="#contact" onclick="closeMenu()">Contact</a>
+  <a href="#" onclick="openAdmin(event);closeMenu()">Admin Login</a>
+</div>
+
+<!-- ─── HERO ─── -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-hex-grid"></div>
+  <div class="hero-content">
+    <div class="hero-logo-wrap">
+      <div class="hero-hex">
+        <svg class="hero-hex-spin" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="70,4 136,39 136,101 70,136 4,101 4,39" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="8 4"/>
+        </svg>
+        <svg viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute">
+          <polygon points="70,10 124,41 124,99 70,130 16,99 16,41" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+        </svg>
+        <div class="hero-hex-inner">
+          <svg viewBox="0 0 36 36" fill="none">
+            <polygon points="18,2 34,11 34,25 18,34 2,25 2,11" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+            <rect x="11" y="11" width="14" height="14" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+            <circle cx="18" cy="18" r="3" fill="rgba(255,255,255,0.7)"/>
+            <line x1="18" y1="2" x2="18" y2="11" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+            <line x1="18" y1="25" x2="18" y2="34" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="hero-eyebrow">Premium Tattoo Studio & Gallery</div>
+    <h1 class="hero-title">THE<br><span>TATTOO</span><br>HUB</h1>
+    <div class="hero-subtitle">· AIG1 HUB · Est. 2024 ·</div>
+    <div class="hero-actions">
+      <a href="#gallery" class="btn-primary">Explore Gallery</a>
+      <a href="#contact" class="btn-outline">Book Session</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ─── SEARCH ─── -->
+<div style="background:var(--bg2); padding: 60px 5%;">
+  <div class="search-wrap">
+    <input class="search-input" type="text" placeholder="Search tattoo styles, artists, keywords..." id="searchInput" oninput="handleSearch()"/>
+    <button class="search-btn" aria-label="Search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<!-- ─── CATEGORIES ─── -->
+<section id="categories" class="pad">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Browse By Style</span>
+      <h2 class="section-title">CATEGORIES</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="cats-grid reveal">
+      <div class="cat-card" onclick="filterGallery('minimal')">
+        <div class="cat-bg cat-minimal" style="background-image:url('https://images.unsplash.com/photo-1546514714-df0ccc50d7bf?w=400&q=80');"></div>
+        <div class="cat-overlay"></div>
+        <div class="cat-info"><span class="cat-name">MINIMAL</span><span class="cat-count">128 Designs</span></div>
+      </div>
+      <div class="cat-card" onclick="filterGallery('tribal')">
+        <div class="cat-bg cat-tribal" style="background-image:url('https://images.unsplash.com/photo-1562259929-b4e1fd3aef09?w=400&q=80');"></div>
+        <div class="cat-overlay"></div>
+        <div class="cat-info"><span class="cat-name">TRIBAL</span><span class="cat-count">94 Designs</span></div>
+      </div>
+      <div class="cat-card" onclick="filterGallery('anime')">
+        <div class="cat-bg cat-anime" style="background-image:url('https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400&q=80');"></div>
+        <div class="cat-overlay"></div>
+        <div class="cat-info"><span class="cat-name">ANIME</span><span class="cat-count">76 Designs</span></div>
+      </div>
+      <div class="cat-card" onclick="filterGallery('sleeve')">
+        <div class="cat-bg cat-sleeve" style="background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80');"></div>
+        <div class="cat-overlay"></div>
+        <div class="cat-info"><span class="cat-name">SLEEVE</span><span class="cat-count">112 Designs</span></div>
+      </div>
+      <div class="cat-card" onclick="filterGallery('blackwork')">
+        <div class="cat-bg cat-black" style="background-image:url('https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?w=400&q=80');"></div>
+        <div class="cat-overlay"></div>
+        <div class="cat-info"><span class="cat-name">BLACKWORK</span><span class="cat-count">203 Designs</span></div>
+      </div>
+      <div class="cat-card" onclick="filterGallery('realism')">
+        <div class="cat-bg cat-realism" style="background-image:url('https://images.unsplash.com/photo-1588421357574-87938a86fa28?w=400&q=80');"></div>
+        <div class="cat-overlay"></div>
+        <div class="cat-info"><span class="cat-name">REALISM</span><span class="cat-count">87 Designs</span></div>
+      </div>
+      <div class="cat-card" onclick="filterGallery('geometric')">
+        <div class="cat-bg cat-geo" style="background-image:url('https://images.unsplash.com/photo-1559827291-72ee739d0d9a?w=400&q=80');"></div>
+        <div class="cat-overlay"></div>
+        <div class="cat-info"><span class="cat-name">GEOMETRIC</span><span class="cat-count">156 Designs</span></div>
+      </div>
+      <div class="cat-card" onclick="filterGallery('traditional')">
+        <div class="cat-bg cat-trad" style="background-image:url('https://images.unsplash.com/photo-1604881991720-f91add269bed?w=400&q=80');"></div>
+        <div class="cat-overlay"></div>
+        <div class="cat-info"><span class="cat-name">TRADITIONAL</span><span class="cat-count">99 Designs</span></div>
+      </div>
+      <div class="cat-card" onclick="filterGallery('custom')">
+        <div class="cat-bg cat-custom" style="background-image:url('https://images.unsplash.com/photo-1554774853-aae0a22c8aa4?w=400&q=80');"></div>
+        <div class="cat-overlay"></div>
+        <div class="cat-info"><span class="cat-name">CUSTOM</span><span class="cat-count">∞ Designs</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── GALLERY ─── -->
+<section id="gallery" class="pad" style="background:var(--bg);">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Curated Collection</span>
+      <h2 class="section-title">GALLERY</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="gallery-filter reveal" id="galleryFilter">
+      <button class="filter-btn active" onclick="filterGallery('all',this)">All</button>
+      <button class="filter-btn" onclick="filterGallery('minimal',this)">Minimal</button>
+      <button class="filter-btn" onclick="filterGallery('tribal',this)">Tribal</button>
+      <button class="filter-btn" onclick="filterGallery('geometric',this)">Geometric</button>
+      <button class="filter-btn" onclick="filterGallery('blackwork',this)">Blackwork</button>
+      <button class="filter-btn" onclick="filterGallery('realism',this)">Realism</button>
+      <button class="filter-btn" onclick="filterGallery('sleeve',this)">Sleeve</button>
+    </div>
+    <div class="gallery-grid" id="galleryGrid">
+      <!-- Items inserted by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ─── TRENDING ─── -->
+<section id="trending" class="pad">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Right Now</span>
+      <h2 class="section-title">TRENDING</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="trending-slider" id="trendingSlider">
+      <div class="trending-card">
+        <div class="tc-bg" style="background-image:url('https://images.unsplash.com/photo-1546514714-df0ccc50d7bf?w=500&q=80');"></div>
+        <div class="tc-overlay"></div>
+        <div class="tc-num">01</div>
+        <span class="tc-badge">Trending</span>
+        <div class="tc-info"><span class="tc-cat">Geometric</span><div class="tc-name">Sacred Geometry Mandala</div><div class="tc-desc">Intricate geometric patterns inspired by ancient sacred symbols.</div></div>
+      </div>
+      <div class="trending-card">
+        <div class="tc-bg" style="background-image:url('https://images.unsplash.com/photo-1562259929-b4e1fd3aef09?w=500&q=80');"></div>
+        <div class="tc-overlay"></div>
+        <div class="tc-num">02</div>
+        <span class="tc-badge">Hot</span>
+        <div class="tc-info"><span class="tc-cat">Blackwork</span><div class="tc-name">Dark Forest Sleeve</div><div class="tc-desc">Full sleeve with deep forest landscape in pure blackwork.</div></div>
+      </div>
+      <div class="trending-card">
+        <div class="tc-bg" style="background-image:url('https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?w=500&q=80');"></div>
+        <div class="tc-overlay"></div>
+        <div class="tc-num">03</div>
+        <span class="tc-badge">Popular</span>
+        <div class="tc-info"><span class="tc-cat">Minimal</span><div class="tc-name">Fine Line Botanicals</div><div class="tc-desc">Delicate single-needle botanical illustrations for the modern collector.</div></div>
+      </div>
+      <div class="trending-card">
+        <div class="tc-bg" style="background-image:url('https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&q=80');"></div>
+        <div class="tc-overlay"></div>
+        <div class="tc-num">04</div>
+        <span class="tc-badge">Rising</span>
+        <div class="tc-info"><span class="tc-cat">Realism</span><div class="tc-name">Portrait Masters</div><div class="tc-desc">Photorealistic portrait work with exceptional shading and detail.</div></div>
+      </div>
+      <div class="trending-card">
+        <div class="tc-bg" style="background-image:url('https://images.unsplash.com/photo-1559827291-72ee739d0d9a?w=500&q=80');"></div>
+        <div class="tc-overlay"></div>
+        <div class="tc-num">05</div>
+        <span class="tc-badge">New</span>
+        <div class="tc-info"><span class="tc-cat">Tribal</span><div class="tc-name">Neo-Tribal Fusion</div><div class="tc-desc">Modern reinterpretation of traditional tribal motifs.</div></div>
+      </div>
+    </div>
+    <div class="slider-controls">
+      <button class="slider-btn" onclick="slideLeft()" aria-label="Previous">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="15,18 9,12 15,6"/></svg>
+      </button>
+      <button class="slider-btn" onclick="slideRight()" aria-label="Next">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9,18 15,12 9,6"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ABOUT ─── -->
+<section id="about" class="pad">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-hex-visual reveal">
+        <div style="position:relative; width:300px; height:300px; display:flex; align-items:center; justify-content:center;">
+          <svg style="position:absolute;inset:0;width:100%;height:100%;animation:spin 30s linear infinite reverse;" viewBox="0 0 300 300" fill="none">
+            <polygon points="150,10 290,85 290,215 150,290 10,215 10,85" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1" stroke-dasharray="12 6"/>
+          </svg>
+          <svg style="position:absolute;inset:0;width:100%;height:100%;animation:spin 20s linear infinite;" viewBox="0 0 300 300" fill="none">
+            <polygon points="150,30 270,97.5 270,202.5 150,270 30,202.5 30,97.5" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+          </svg>
+          <div class="big-hex">
+            <div class="big-hex-inner">
+              <svg viewBox="0 0 80 80" fill="none">
+                <polygon points="40,4 76,22 76,58 40,76 4,58 4,22" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+                <rect x="26" y="26" width="28" height="28" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+                <circle cx="40" cy="40" r="6" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1"/>
+                <circle cx="40" cy="40" r="2" fill="rgba(255,255,255,0.8)"/>
+                <line x1="40" y1="4" x2="40" y2="22" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+                <line x1="40" y1="58" x2="40" y2="76" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+                <line x1="4" y1="40" x2="22" y2="40" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+                <line x1="58" y1="40" x2="76" y2="40" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="about-text reveal reveal-d2">
+        <div class="about-subtitle">Our Story</div>
+        <h2 class="about-h2">ART MEETS<br>PRECISION</h2>
+        <p class="about-p">The Tattoo Hub is a curated platform and studio dedicated to the finest tattoo artistry. Founded on the belief that tattoo art deserves the same reverence as gallery-worthy fine art.</p>
+        <p class="about-p">Every design in our collection is handpicked for its technical mastery, artistic vision, and cultural significance. From geometric precision to freehand realism — we celebrate every style.</p>
+        <div class="about-stats">
+          <div><span class="stat-num">12+</span><span class="stat-label">Artists</span></div>
+          <div><span class="stat-num">955+</span><span class="stat-label">Designs</span></div>
+          <div><span class="stat-num">7yr</span><span class="stat-label">Experience</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CONTACT ─── -->
+<section id="contact" class="pad">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Get In Touch</span>
+      <h2 class="section-title">CONTACT</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          </div>
+          <div><span class="contact-label">Studio Location</span><div class="contact-value">The Tattoo Hub, Karachi, Pakistan</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div><span class="contact-label">Email</span><div class="contact-value">hello@tattoohub.art</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div><span class="contact-label">Phone</span><div class="contact-value">+92 300 0000000</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+          </div>
+          <div><span class="contact-label">Hours</span><div class="contact-value">Mon–Sat: 11AM – 9PM</div></div>
+        </div>
+      </div>
+      <div class="contact-form reveal reveal-d2">
+        <div class="form-row">
+          <input class="form-input" type="text" placeholder="Your Name">
+          <input class="form-input" type="email" placeholder="Email Address">
+        </div>
+        <input class="form-input" type="text" placeholder="Tattoo Style / Category" style="width:100%;margin-bottom:12px;">
+        <textarea class="form-textarea" placeholder="Tell us about your tattoo idea..."></textarea>
+        <button class="form-submit" onclick="submitForm()">Send Inquiry</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="footer-logo-text">TATTOO HUB</span>
+      <span class="footer-logo-sub">· AIG1 HUB ·</span>
+      <p class="footer-desc">Premium tattoo gallery and studio platform. Curating the finest tattoo artistry from around the world.</p>
+      <div class="social-row">
+        <a href="#" class="social-btn" aria-label="Pinterest">P</a>
+        <a href="#" class="social-btn" aria-label="Instagram">I</a>
+        <a href="#" class="social-btn" aria-label="Facebook">F</a>
+        <a href="#" class="social-btn" aria-label="TikTok">T</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#categories">Categories</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#trending">Trending</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Styles</h4>
+      <ul>
+        <li><a href="#">Minimal</a></li>
+        <li><a href="#">Geometric</a></li>
+        <li><a href="#">Blackwork</a></li>
+        <li><a href="#">Realism</a></li>
+        <li><a href="#">Traditional</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Newsletter</h4>
+      <p style="font-size:12px;color:rgba(255,255,255,0.3);margin-bottom:16px;line-height:1.6;">Get the latest tattoo trends and studio updates.</p>
+      <div class="newsletter-row">
+        <input class="newsletter-input" type="email" placeholder="your@email.com">
+        <button class="newsletter-submit">Join</button>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2024 The Tattoo Hub · AIG1 HUB. All rights reserved.</span>
+    <div class="footer-badges">
+      <span class="footer-badge">SSL Secured</span>
+      <span class="footer-badge">Pinterest Synced</span>
+      <span class="footer-badge">PWA Ready</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ─── ADMIN LOGIN MODAL ─── -->
+<div id="admin-panel">
+  <div class="admin-modal">
+    <button class="admin-close" onclick="closeAdmin()">✕</button>
+    <div class="admin-logo">
+      <div class="admin-logo-hex">
+        <svg viewBox="0 0 60 60" fill="none">
+          <polygon points="30,3 57,18 57,42 30,57 3,42 3,18" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+          <circle cx="30" cy="30" r="8" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+          <circle cx="30" cy="30" r="3" fill="rgba(255,255,255,0.6)"/>
+        </svg>
+      </div>
+      <span class="admin-title">ADMIN ACCESS</span>
+      <span class="admin-sub">Tattoo Hub Dashboard</span>
+    </div>
+    <div class="admin-badge">
+      <div class="dot"></div>
+      <span>Secure Connection · JWT Protected</span>
+    </div>
+    <div class="admin-form-group">
+      <label class="admin-form-label">Username</label>
+      <input class="form-input" type="text" placeholder="admin@tattoohub.art" id="adminUser">
+    </div>
+    <div class="admin-form-group">
+      <label class="admin-form-label">Password</label>
+      <input class="form-input" type="password" placeholder="••••••••••••" id="adminPass">
+    </div>
+    <div class="admin-form-group">
+      <label class="admin-form-label">2FA Code</label>
+      <input class="form-input" type="text" placeholder="6-digit code" id="adminTFA" maxlength="6">
+    </div>
+    <button class="form-submit" onclick="adminLogin()" style="margin-top:8px;">Access Dashboard</button>
+    <div class="admin-forgot"><a href="#">Forgot password?</a> · <a href="#">Request Access</a></div>
+  </div>
+</div>
+
+<!-- ─── ADMIN DASHBOARD ─── -->
+<div id="admin-dashboard">
+  <div class="dash-nav">
+    <span class="dash-title">TATTOO HUB · ADMIN</span>
+    <div class="dash-user">
+      <div class="dash-avatar">AD</div>
+      <button class="dash-btn" onclick="closeDashboard()">Exit Dashboard</button>
+    </div>
+  </div>
+  <div class="dash-body">
+    <div class="dash-sidebar">
+      <div class="dash-nav-item active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Dashboard
+      </div>
+      <div class="dash-nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        Posts
+      </div>
+      <div class="dash-nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 010 20"/><path d="M2 12h20"/></svg>
+        Pinterest Sync
+      </div>
+      <div class="dash-nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6h16M4 12h16M4 18h7"/></svg>
+        Categories
+      </div>
+      <div class="dash-nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        Users
+      </div>
+      <div class="dash-nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/></svg>
+        SEO
+      </div>
+      <div class="dash-nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+        Settings
+      </div>
+    </div>
+    <div class="dash-content">
+      <div class="sync-indicator">
+        <div class="sync-dot"></div>
+        <span class="sync-text">Pinterest Auto-Sync Active · Last sync: 2 min ago</span>
+      </div>
+      <div class="dash-stats">
+        <div class="stat-card">
+          <span class="stat-card-num">955</span>
+          <span class="stat-card-lbl">Total Posts</span>
+          <div class="stat-card-delta">↑ +12 this week</div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-card-num">48K</span>
+          <span class="stat-card-lbl">Monthly Views</span>
+          <div class="stat-card-delta">↑ +23% vs last month</div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-card-num">9</span>
+          <span class="stat-card-lbl">Categories</span>
+          <div class="stat-card-delta">All active</div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-card-num">284</span>
+          <span class="stat-card-lbl">Pending Pins</span>
+          <div class="stat-card-delta" style="color:#facc15">⚠ Awaiting approval</div>
+        </div>
+      </div>
+      <div class="dash-section-title">Recent Pinterest Syncs</div>
+      <table class="dash-table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Tags</th>
+            <th>Date</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Sacred Geometry Mandala</td>
+            <td>Geometric</td>
+            <td><span class="tag-pill">Sacred</span><span class="tag-pill">Mandala</span></td>
+            <td>Today, 14:32</td>
+            <td><span class="status-live">● Live</span></td>
+          </tr>
+          <tr>
+            <td>Fine Line Rose Study</td>
+            <td>Minimal</td>
+            <td><span class="tag-pill">Rose</span><span class="tag-pill">Fineline</span></td>
+            <td>Today, 12:10</td>
+            <td><span class="status-live">● Live</span></td>
+          </tr>
+          <tr>
+            <td>Neo-Tribal Back Piece</td>
+            <td>Tribal</td>
+            <td><span class="tag-pill">Tribal</span><span class="tag-pill">Back</span></td>
+            <td>Yesterday</td>
+            <td><span class="status-pend">◐ Pending</span></td>
+          </tr>
+          <tr>
+            <td>Anime Portrait Series</td>
+            <td>Anime</td>
+            <td><span class="tag-pill">Anime</span><span class="tag-pill">Portrait</span></td>
+            <td>Yesterday</td>
+            <td><span class="status-pend">◐ Pending</span></td>
+          </tr>
+          <tr>
+            <td>Blackwork Skull</td>
+            <td>Blackwork</td>
+            <td><span class="tag-pill">Skull</span></td>
+            <td>2 days ago</td>
+            <td><span class="status-rej">✕ Rejected</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <button class="dash-btn" onclick="showToast('Sync triggered!')">Force Pinterest Sync</button>
+        <button class="dash-btn" onclick="showToast('Cache cleared!')">Clear Cache</button>
+        <button class="dash-btn" onclick="showToast('Sitemap updated!')">Rebuild Sitemap</button>
+        <button class="dash-btn" onclick="showToast('Exports ready in /exports')">Export Posts CSV</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── FULLSCREEN PREVIEW ─── -->
+<div id="preview" onclick="closePreview()">
+  <div class="preview-inner" onclick="event.stopPropagation()">
+    <img class="preview-img" id="previewImg" src="" alt="">
+    <div class="preview-watermark">TATTOO HUB</div>
+    <div class="preview-info">
+      <div>
+        <div class="preview-title" id="previewTitle"></div>
+        <div class="preview-cat" id="previewCat"></div>
+      </div>
+      <div style="display:flex;gap:8px;">
+        <button class="gallery-btn" onclick="showToast('Liked!')" style="width:auto;padding:0 12px;">♥ Like</button>
+        <button class="gallery-btn" onclick="showToast('Saved!')" style="width:auto;padding:0 12px;">⊕ Save</button>
+        <button class="gallery-btn" onclick="showToast('Link copied!')" style="width:auto;padding:0 12px;">⇗ Share</button>
+      </div>
+    </div>
+  </div>
+  <button class="preview-close" onclick="closePreview()">✕</button>
+</div>
+
+<!-- ─── TOAST ─── -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ─── GALLERY DATA ───
+const galleryData = [
+  { id:1, title:'Sacred Geometry', cat:'geometric', tags:['geo','sacred'], img:'https://images.unsplash.com/photo-1559827291-72ee739d0d9a?w=400&q=80', h: 280 },
+  { id:2, title:'Dark Forest', cat:'blackwork', tags:['forest','dark'], img:'https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?w=400&q=80', h: 360 },
+  { id:3, title:'Fine Line Botanicals', cat:'minimal', tags:['botanical','fineline'], img:'https://images.unsplash.com/photo-1546514714-df0ccc50d7bf?w=400&q=80', h: 300 },
+  { id:4, title:'Tribal Warrior', cat:'tribal', tags:['tribal','warrior'], img:'https://images.unsplash.com/photo-1562259929-b4e1fd3aef09?w=400&q=80', h: 420 },
+  { id:5, title:'Portrait Master', cat:'realism', tags:['portrait','realism'], img:'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400&q=80', h: 320 },
+  { id:6, title:'Full Sleeve', cat:'sleeve', tags:['sleeve','full'], img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80', h: 500 },
+  { id:7, title:'Mandala Flow', cat:'geometric', tags:['mandala','geo'], img:'https://images.unsplash.com/photo-1554774853-aae0a22c8aa4?w=400&q=80', h: 280 },
+  { id:8, title:'Anime Study', cat:'anime', tags:['anime','character'], img:'https://images.unsplash.com/photo-1604881991720-f91add269bed?w=400&q=80', h: 380 },
+  { id:9, title:'Blackwork Arm', cat:'blackwork', tags:['arm','blackwork'], img:'https://images.unsplash.com/photo-1588421357574-87938a86fa28?w=400&q=80', h: 340 },
+  { id:10, title:'Geometric Eye', cat:'geometric', tags:['eye','sacred'], img:'https://images.unsplash.com/photo-1559827291-72ee739d0d9a?w=400&q=70', h: 260 },
+  { id:11, title:'Minimal Script', cat:'minimal', tags:['script','minimal'], img:'https://images.unsplash.com/photo-1546514714-df0ccc50d7bf?w=400&q=70', h: 200 },
+  { id:12, title:'Tribal Sun', cat:'tribal', tags:['sun','tribal'], img:'https://images.unsplash.com/photo-1562259929-b4e1fd3aef09?w=400&q=70', h: 300 },
+];
+
+let activeFilter = 'all';
+
+function buildGallery(filter) {
+  const grid = document.getElementById('galleryGrid');
+  const items = filter === 'all' ? galleryData : galleryData.filter(i => i.cat === filter);
+  grid.innerHTML = items.map(item => `
+    <div class="gallery-item reveal" data-cat="${item.cat}" onclick="openPreview('${item.img}','${item.title}','${item.cat}')">
+      <img class="gallery-img" src="${item.img}" alt="${item.title}" loading="lazy" style="height:${item.h}px;object-fit:cover;">
+      <div class="gallery-watermark">TATTOO HUB</div>
+      <div class="gallery-hover">
+        <div class="gallery-meta">
+          <div class="gallery-tag">${item.cat}</div>
+          <div class="gallery-title-sm">${item.title}</div>
+          <div class="gallery-actions">
+            <button class="gallery-btn" onclick="event.stopPropagation();showToast('Liked!')" title="Like">♥</button>
+            <button class="gallery-btn" onclick="event.stopPropagation();showToast('Saved!')" title="Save">⊕</button>
+            <button class="gallery-btn" onclick="event.stopPropagation();showToast('Link copied!')" title="Share">⇗</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  observeReveal();
+}
+
+function filterGallery(cat, btn) {
+  activeFilter = cat;
+  if (btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+  buildGallery(cat);
+}
+
+function handleSearch() {
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  const items = galleryData.filter(i =>
+    i.title.toLowerCase().includes(q) ||
+    i.cat.toLowerCase().includes(q) ||
+    i.tags.some(t => t.includes(q))
+  );
+  const grid = document.getElementById('galleryGrid');
+  grid.innerHTML = items.map(item => `
+    <div class="gallery-item reveal" data-cat="${item.cat}" onclick="openPreview('${item.img}','${item.title}','${item.cat}')">
+      <img class="gallery-img" src="${item.img}" alt="${item.title}" loading="lazy" style="height:${item.h}px;object-fit:cover;">
+      <div class="gallery-watermark">TATTOO HUB</div>
+      <div class="gallery-hover">
+        <div class="gallery-meta">
+          <div class="gallery-tag">${item.cat}</div>
+          <div class="gallery-title-sm">${item.title}</div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  if (!q) buildGallery(activeFilter);
+  observeReveal();
+  if (q) document.getElementById('gallery').scrollIntoView({behavior:'smooth'});
+}
+
+// ─── PREVIEW ───
+function openPreview(img, title, cat) {
+  document.getElementById('previewImg').src = img;
+  document.getElementById('previewTitle').textContent = title;
+  document.getElementById('previewCat').textContent = cat.toUpperCase();
+  document.getElementById('preview').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closePreview() {
+  document.getElementById('preview').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// ─── ADMIN ───
+function openAdmin(e) { e.preventDefault(); document.getElementById('admin-panel').classList.add('open'); document.body.style.overflow='hidden'; }
+function closeAdmin() { document.getElementById('admin-panel').classList.remove('open'); document.body.style.overflow=''; }
+function adminLogin() {
+  const u = document.getElementById('adminUser').value;
+  const p = document.getElementById('adminPass').value;
+  if (!u || !p) { showToast('Please fill all fields'); return; }
+  closeAdmin();
+  document.getElementById('admin-dashboard').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  showToast('Welcome back, Admin!');
+}
+function closeDashboard() {
+  document.getElementById('admin-dashboard').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// ─── SLIDER ───
+function slideRight() { document.getElementById('trendingSlider').scrollBy({left:340,behavior:'smooth'}); }
+function slideLeft() { document.getElementById('trendingSlider').scrollBy({left:-340,behavior:'smooth'}); }
+
+// ─── NAVBAR SCROLL ───
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 80);
+});
+
+// ─── MOBILE MENU ───
+document.getElementById('menuToggle').addEventListener('click', () => {
+  document.getElementById('mobileMenu').classList.toggle('open');
+});
+function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
+
+// ─── TOAST ───
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ─── CONTACT FORM ───
+function submitForm() { showToast('Inquiry sent! We\'ll be in touch.'); }
+
+// ─── SCROLL REVEAL ───
+function observeReveal() {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, {threshold: 0.1});
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el => obs.observe(el));
+}
+
+// ─── INIT ───
+buildGallery('all');
+observeReveal();
+
+// Keyboard escape
+document.addEventListener('keydown', e => {
+  if(e.key==='Escape') { closePreview(); closeAdmin(); }
+});
+</script>
+</body>
+</html>
